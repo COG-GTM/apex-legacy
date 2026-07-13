@@ -11,7 +11,7 @@ CREATE TABLE client (
     kyc_verified_date   DATE
 );
 
-CREATE INDEX idx_client_sin_hash_dob ON client (sin_hash, date_of_birth);
+CREATE UNIQUE INDEX idx_client_sin_hash_dob ON client (sin_hash, date_of_birth);
 CREATE INDEX idx_client_kyc_status_verified_date ON client (kyc_status, kyc_verified_date);
 
 CREATE TABLE loan_application (
