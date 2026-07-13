@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: cai-platform
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/cai_platform}
+    username: ${DB_USERNAME:cai}
+    password: ${DB_PASSWORD:cai}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+  threads:
+    virtual:
+      enabled: true
+
+# External identity provider used by KYC verification callouts (see KYCVerificationService).
+identity-provider:
+  base-url: ${IDENTITY_PROVIDER_BASE_URL:https://identity.example.com}
+  verify-path: /v2/verify
+  auth-token: ${IDENTITY_PROVIDER_AUTH_TOKEN:changeme}
+
+server:
+  port: ${SERVER_PORT:8080}
