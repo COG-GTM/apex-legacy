@@ -6,6 +6,8 @@ import com.cai.platform.repository.ClientRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronization;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -56,7 +58,13 @@ public class ClientOnboardingService {
         client.setKycStatus(KycStatus.PENDING);
         client = clientRepository.save(client);
 
-        kycVerificationService.verifyAsync(client.getId());
+        Long clientId = client.getId();
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
+            @Override
+            public void afterCommit() {
+                kycVerificationService.verifyAsync(clientId);
+            }
+        });
         return client;
     }
 
