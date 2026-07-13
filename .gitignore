@@ -1,0 +1,5 @@
+target/
+*.class
+.sfdx/
+.sf/
+.vscode/
