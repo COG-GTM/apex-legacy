@@ -15,7 +15,6 @@ public class AsyncConfig {
         executor.setMaxPoolSize(16);
         executor.setQueueCapacity(100);
         executor.setThreadNamePrefix("cai-async-");
-        executor.initialize();
         return executor;
     }
 }
