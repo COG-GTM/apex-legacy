@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: cai-platform
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/cai_platform}
+    username: ${DATABASE_USERNAME:cai}
+    password: ${DATABASE_PASSWORD:cai}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+cai:
+  identity-provider:
+    base-url: ${IDENTITY_PROVIDER_URL:http://localhost:8081}
