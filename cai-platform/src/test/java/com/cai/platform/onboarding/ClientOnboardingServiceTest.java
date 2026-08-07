@@ -3,6 +3,9 @@ package com.cai.platform.onboarding;
 import com.cai.platform.domain.Client;
 import com.cai.platform.domain.KycStatus;
 import com.cai.platform.repository.ClientRepository;
+import com.cai.platform.repository.EscalationCaseRepository;
+import com.cai.platform.repository.LoanApplicationRepository;
+import com.cai.platform.repository.TransactionDisputeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +30,23 @@ class ClientOnboardingServiceTest {
     @Autowired
     private ClientRepository clientRepository;
 
+    @Autowired
+    private TransactionDisputeRepository transactionDisputeRepository;
+
+    @Autowired
+    private EscalationCaseRepository escalationCaseRepository;
+
+    @Autowired
+    private LoanApplicationRepository loanApplicationRepository;
+
     @MockitoBean
     private KycVerificationService kycVerificationService;
 
     @BeforeEach
     void setUp() {
+        transactionDisputeRepository.deleteAll();
+        escalationCaseRepository.deleteAll();
+        loanApplicationRepository.deleteAll();
         clientRepository.deleteAll();
     }
 
