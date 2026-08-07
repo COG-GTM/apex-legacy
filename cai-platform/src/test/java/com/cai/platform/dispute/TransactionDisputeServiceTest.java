@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -32,6 +33,8 @@ class TransactionDisputeServiceTest {
         Client client = new Client();
         client.setFirstName("Dispute");
         client.setLastName("Tester");
+        client.setSinHash(UUID.randomUUID().toString().replace("-", ""));
+        client.setDateOfBirth(LocalDate.of(1985, 1, 1));
         return clientRepository.save(client).getId();
     }
 

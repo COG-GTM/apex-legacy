@@ -9,6 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDate;
+import java.util.UUID;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,6 +30,8 @@ class DisputeControllerTest {
         Client client = new Client();
         client.setFirstName("Dispute");
         client.setLastName("Tester");
+        client.setSinHash(UUID.randomUUID().toString().replace("-", ""));
+        client.setDateOfBirth(LocalDate.of(1985, 1, 1));
         return clientRepository.save(client).getId();
     }
 
