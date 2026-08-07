@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -41,6 +42,8 @@ class LoanApplicationServiceTest {
         Client client = new Client();
         client.setFirstName("Test");
         client.setLastName("Client");
+        client.setSinHash(UUID.randomUUID().toString().replace("-", ""));
+        client.setDateOfBirth(LocalDate.of(1985, 1, 1));
         client.setKycStatus(KycStatus.VERIFIED);
         client.setKycVerifiedDate(kycVerifiedDate);
         return clientRepository.save(client);

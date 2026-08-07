@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -40,6 +41,8 @@ class LoanApplicationControllerTest {
         Client client = new Client();
         client.setFirstName("Test");
         client.setLastName("Client");
+        client.setSinHash(UUID.randomUUID().toString().replace("-", ""));
+        client.setDateOfBirth(LocalDate.of(1985, 1, 1));
         client.setKycStatus(KycStatus.VERIFIED);
         client.setKycVerifiedDate(kycVerifiedDate);
         client = clientRepository.save(client);
