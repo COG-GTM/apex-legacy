@@ -29,10 +29,10 @@ public class Client {
     private String lastName;
 
     /** SHA-256 of SIN, never the raw value. */
-    @Column(name = "sin_hash", length = 64)
+    @Column(name = "sin_hash", length = 64, nullable = false)
     private String sinHash;
 
-    @Column(name = "date_of_birth")
+    @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
 
     @Column(name = "email")
